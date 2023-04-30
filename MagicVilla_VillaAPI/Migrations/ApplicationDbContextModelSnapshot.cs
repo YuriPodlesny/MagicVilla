@@ -70,7 +70,7 @@ namespace MagicVilla_VillaAPI.Migrations
                         {
                             Id = 1,
                             Amenity = "",
-                            CreateDate = new DateTime(2023, 4, 28, 23, 6, 50, 236, DateTimeKind.Local).AddTicks(8264),
+                            CreateDate = new DateTime(2023, 4, 29, 20, 44, 51, 840, DateTimeKind.Local).AddTicks(9619),
                             Details = "Located in Havelock Island, 500 metres from Govind Nagar Beach, Royal Villa Beach Resort provides accommodation with a garden, free private parking and a restaurant. This 3-star hotel offers room service and a concierge service. The hotel features garden views and a children's playground.",
                             ImageUrl = "https://cf.bstatic.com/xdata/images/hotel/max1024x768/417140169.jpg?k=794dd7b184f101b8aa59e7260923931a1e25589de58b7ce011294797408be673&o=&hp=1",
                             Name = "Royal Villa",
@@ -83,7 +83,7 @@ namespace MagicVilla_VillaAPI.Migrations
                         {
                             Id = 2,
                             Amenity = "",
-                            CreateDate = new DateTime(2023, 4, 28, 23, 6, 50, 236, DateTimeKind.Local).AddTicks(8280),
+                            CreateDate = new DateTime(2023, 4, 29, 20, 44, 51, 840, DateTimeKind.Local).AddTicks(9636),
                             Details = "Located in Havelock Island, 500 metres from Govind Nagar Beach, Royal Villa Beach Resort provides accommodation with a garden, free private parking and a restaurant. This 3-star hotel offers room service and a concierge service. The hotel features garden views and a children's playground.",
                             ImageUrl = "https://cf.bstatic.com/xdata/images/hotel/max1024x768/200990168.jpg?k=efdbcb6b8000ed684476b3abb5eae43a36a8e10a0b3680026ce73af0cb83ee90&o=&hp=1",
                             Name = "Diamond Villa",
@@ -96,7 +96,7 @@ namespace MagicVilla_VillaAPI.Migrations
                         {
                             Id = 3,
                             Amenity = "",
-                            CreateDate = new DateTime(2023, 4, 28, 23, 6, 50, 236, DateTimeKind.Local).AddTicks(8282),
+                            CreateDate = new DateTime(2023, 4, 29, 20, 44, 51, 840, DateTimeKind.Local).AddTicks(9638),
                             Details = "Located in Havelock Island, 500 metres from Govind Nagar Beach, Royal Villa Beach Resort provides accommodation with a garden, free private parking and a restaurant. This 3-star hotel offers room service and a concierge service. The hotel features garden views and a children's playground.",
                             ImageUrl = "https://cf.bstatic.com/xdata/images/hotel/max1024x768/375779638.jpg?k=61801f9d0506627a342055c873c539af50b89c8706fc226eb02ea901fe124e38&o=&hp=1",
                             Name = "Diamond Pool Villa",
@@ -109,7 +109,7 @@ namespace MagicVilla_VillaAPI.Migrations
                         {
                             Id = 4,
                             Amenity = "",
-                            CreateDate = new DateTime(2023, 4, 28, 23, 6, 50, 236, DateTimeKind.Local).AddTicks(8284),
+                            CreateDate = new DateTime(2023, 4, 29, 20, 44, 51, 840, DateTimeKind.Local).AddTicks(9640),
                             Details = "Located in Havelock Island, 500 metres from Govind Nagar Beach, Royal Villa Beach Resort provides accommodation with a garden, free private parking and a restaurant. This 3-star hotel offers room service and a concierge service. The hotel features garden views and a children's playground.",
                             ImageUrl = "https://cf.bstatic.com/xdata/images/hotel/max1024x768/375779625.jpg?k=9347d660e6fb93f528a74ee4f0789b2f80aed1a877820497923bdc74029fafa3&o=&hp=1",
                             Name = "Wild Orchid Villa",
@@ -122,7 +122,7 @@ namespace MagicVilla_VillaAPI.Migrations
                         {
                             Id = 5,
                             Amenity = "",
-                            CreateDate = new DateTime(2023, 4, 28, 23, 6, 50, 236, DateTimeKind.Local).AddTicks(8286),
+                            CreateDate = new DateTime(2023, 4, 29, 20, 44, 51, 840, DateTimeKind.Local).AddTicks(9642),
                             Details = "Located in Havelock Island, 500 metres from Govind Nagar Beach, Royal Villa Beach Resort provides accommodation with a garden, free private parking and a restaurant. This 3-star hotel offers room service and a concierge service. The hotel features garden views and a children's playground.",
                             ImageUrl = "https://cf.bstatic.com/xdata/images/hotel/max1024x768/177185852.jpg?k=653c282762e3dab1087205beb9ac90af00308f4f387c09986dcb8ed8c8a6260a&o=&hp=1",
                             Name = "Wild Orchid Villa",
@@ -131,6 +131,42 @@ namespace MagicVilla_VillaAPI.Migrations
                             Sqft = 550,
                             UpdateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
+                });
+
+            modelBuilder.Entity("MagicVilla_VillaAPI.Models.VillaNumber", b =>
+                {
+                    b.Property<int>("VillaNo")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SpecialDetails")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("VillaID")
+                        .HasColumnType("int");
+
+                    b.HasKey("VillaNo");
+
+                    b.HasIndex("VillaID");
+
+                    b.ToTable("VillaNumbers");
+                });
+
+            modelBuilder.Entity("MagicVilla_VillaAPI.Models.VillaNumber", b =>
+                {
+                    b.HasOne("MagicVilla_VillaAPI.Models.Villa", "Villa")
+                        .WithMany()
+                        .HasForeignKey("VillaID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Villa");
                 });
 #pragma warning restore 612, 618
         }
